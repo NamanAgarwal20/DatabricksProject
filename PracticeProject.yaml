@@ -1,0 +1,32 @@
+resources:
+  jobs:
+    Practice_Pipeline:
+      name: Practice_Pipeline
+      tasks:
+        - task_key: Task_1-Store
+          notebook_task:
+            notebook_path: /Workspace/Users/naman200503@gmail.com/store
+            source: WORKSPACE
+        - task_key: Task_2-Product
+          notebook_task:
+            notebook_path: /Workspace/Users/naman200503@gmail.com/product
+            source: WORKSPACE
+        - task_key: Task_3-Transaction
+          depends_on:
+            - task_key: Task_2-Product
+            - task_key: Task_1-Store
+          notebook_task:
+            notebook_path: /Workspace/Users/naman200503@gmail.com/transaction_autoloader
+            source: WORKSPACE
+        - task_key: Task_4-Customers
+          depends_on:
+            - task_key: Task_3-Transaction
+          pipeline_task:
+            pipeline_id: e1aafcea-a09a-45c6-9074-3d0bfd5e6e68
+      git_source:
+        git_url: https://github.com/NamanAgarwal20/DatabricksProject.git
+        git_provider: gitHub
+        git_branch: main
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
