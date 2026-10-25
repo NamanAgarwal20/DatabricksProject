@@ -24,7 +24,7 @@ The pipeline consolidates four retail data domains — **Stores**, **Products**,
 ```
                     ┌─────────────────────────────────────────────────┐
                     │   Unity Catalog Volumes (Landing Zone)          │
-                    │   store_100_records.csv · product_1000.jsonl     │
+                    │   store_100_records.csv · product_1000.jsonl    │
                     │   transactions/*.csv · customers/*.csv          │
                     └───────────────────┬─────────────────────────────┘
                                         │
@@ -38,7 +38,7 @@ The pipeline consolidates four retail data domains — **Stores**, **Products**,
         ┌──────▼──────┐          ┌──────▼──────┐          ┌──────▼──────┐
         │ Store       │          │ Product     │          │ Transaction │
         │ Silver      │          │ Silver +    │          │ Silver      │
-        │ (cleaned)  │          │ SCD Type 2  │          │ (MERGE)     │
+        │ (cleaned)   │          │ SCD Type 2  │          │ (MERGE)     │
         └──────┬──────┘          └──────┬──────┘          └──────┬──────┘
                └────────────────────────┼────────────────────────┘
                                         │
