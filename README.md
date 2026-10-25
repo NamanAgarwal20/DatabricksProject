@@ -26,30 +26,30 @@ The pipeline consolidates four retail data domains — **Stores**, **Products**,
                     │   Unity Catalog Volumes (Landing Zone)          │
                     │   store_100_records.csv · product_1000.jsonl    │
                     │   transactions/*.csv · customers/*.csv          │
-                    └───────────────────┬─────────────────────────────┘
-                                        │
-               ┌────────────────────────┼────────────────────────┐
-               │                        │                        │
-        ┌──────▼──────┐          ┌──────▼──────┐          ┌──────▼──────┐
-        │ Store       │          │ Product     │          │ Transaction │
-        │ Batch Bronze│          │ Batch Bronze│          │ Auto Loader │
-        └──────┬──────┘          └──────┬──────┘          │ (Streaming) │
-               │                        │                 └──────┬──────┘
-        ┌──────▼──────┐          ┌──────▼──────┐          ┌──────▼──────┐
-        │ Store       │          │ Product     │          │ Transaction │
-        │ Silver      │          │ Silver +    │          │ Silver      │
-        │ (cleaned)   │          │ SCD Type 2  │          │ (MERGE)     │
-        └──────┬──────┘          └──────┬──────┘          └──────┬──────┘
-               └────────────────────────┼────────────────────────┘
-                                        │
-                              ┌─────────▼─────────┐
-                              │  Customers SDP    │
-                              │  (SCD Type 1 +    │
-                              │   Gold MV)        │
-                              └───────────────────┘
+                    └────────────────────────┼────────────────────────┘
+                                             │
+                    ┌────────────────────────┼────────────────────────┐
+                    │                        │                        │
+             ┌──────▼──────┐          ┌──────▼──────┐          ┌──────▼──────┐
+             │ Store       │          │ Product     │          │ Transaction │
+             │ Batch Bronze│          │ Batch Bronze│          │ Auto Loader │
+             └──────┬──────┘          └──────┬──────┘          │ (Streaming) │
+                    │                        │                 └──────┬──────┘
+             ┌──────▼──────┐          ┌──────▼──────┐          ┌──────▼──────┐
+             │ Store       │          │ Product     │          │ Transaction │
+             │ Silver      │          │ Silver +    │          │ Silver      │
+             │ (cleaned)   │          │ SCD Type 2  │          │ (MERGE)     │
+             └──────┬──────┘          └──────┬──────┘          └──────┬──────┘
+                    └────────────────────────┼────────────────────────┘
+                                             │
+                                   ┌─────────▼─────────┐
+                                   │  Customers SDP    │
+                                   │  (SCD Type 1 +    │
+                                   │   Gold MV)        │
+                                   └───────────────────┘
 
-        Orchestrated end-to-end by a Lakeflow Job defined in a
-        Declarative Automation Bundle (PracticeProject.yaml)
+                   Orchestrated end-to-end by a Lakeflow Job defined in a
+                   Declarative Automation Bundle (PracticeProject.yaml)
 ```
 
 ### Orchestration flow (DAB-defined Lakeflow Job)
